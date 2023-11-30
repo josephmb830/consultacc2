@@ -5,14 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tu Aplicación sin React</title>
-  <style>
-    /* Agrega tus estilos CSS aquí */
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
-  
-</script>
 </head>
 
 <body>
@@ -20,28 +16,28 @@
     <div class="container">
       <div class="row d-flex">
         <div class="col-sm-1">
-            <div className=''> 
+            <div class=''> 
                 <img class="logomuni" src="https://pagosenlinea.munimagdalena.gob.pe/img/logom.png" alt="logo muni magdalena"/>
             </div>
         </div>
         <div class="col-sm-11">
-            <div className=''> 
-                <h1 className='titulo1'>
+            <div class=''> 
+                <h1 class='titulo1'>
                   Consulta Cuenta Corriente
                 </h1>
             </div>
         </div>
       </div>
       <div class="row principal d-flex">
-           <!-- Contenido del componente FiltrosPrincipales -->
-          <div class="mright col-sm-4" id="filtros-container">
+        <!-- Contenido del componente FiltrosPrincipales -->
+        <div class="col-sm-4">
             <!-- Contenido estático de FiltrosPrincipales -->
             <div class='form-control'> 
               <h5 class='subtitulo'>Filtros Principales</h5>
               
               <!-- Código Contribuyente -->
               <div class="d-flex">
-                <label for="codigo" class="label flex-1 col-sm-6">Código Contribuyente:</label>
+                <label for="codigo" class="label flex-1 col-sm-7">Código Contribuyente:</label>
                 <input id="codigo" class="form-control flex-1" type="text" placeholder="Ingrese Código" />
               </div>
           
@@ -59,46 +55,46 @@
               </div>
               <div class='espaciadop'></div>
             </div>
-          </div>
         </div>
-        <div class="mright col-sm-5">
+        
+        <div class="col-sm-5">
           <!-- Contenido del componente Datos -->
-        <div class="form-control" id="datos-container">
-            <h5 class='subtitulo'>Datos</h5>
-            <div class='espaciadom'></div>
-            <!-- Primer grupo -->
-            <div class="col-lg-12 d-flex">
-              <div>
-                <label class="label col-lg-12" >Nombre :</label>
+          <div class="form-control">
+              <h5 class='subtitulo'>Datos</h5>
+              <div class='espaciadom'></div>
+              <!-- Primer grupo -->
+              <div class="col-lg-12 d-flex">
+                <div>
+                  <label class="label col-lg-12" >Nombre :</label>
+                </div>
+                <div id="nombre-container">
+                  <!-- Placeholder para el contenido dinámico del nombre -->
+                </div>
               </div>
-              <div id="nombre-container">
-                <!-- Placeholder para el contenido dinámico del nombre -->
+              <div class='espaciadom'></div>
+              <!-- Segundo grupo -->
+              <div class="col-sx-12 d-flex">
+                <label class="label">Direccion : </label>
+                <div id="direccion-container">
+                  <!-- Placeholder para el contenido dinámico de la dirección -->
+                </div>
               </div>
-            </div>
-            <div class='espaciadom'></div>
-            <!-- Segundo grupo -->
-            <div class="col-sx-12 d-flex">
-              <label class="label">Direccion : </label>
-              <div id="direccion-container">
-                <!-- Placeholder para el contenido dinámico de la dirección -->
-              </div>
-            </div>
-            <div class='espaciadox'></div>
+              <div class='espaciadox'></div>
           </div>
         </div>
         <div class="col-sm-3">
-          <div className="form-control row">
-            <div className='espaciado'> 
+          <div class="form-control row">
+            <div class='espaciado'> 
             </div>
             <div class="col-sm-12"> 
               <input class="btn btn-secondary buttonc" type="submit"  value ="Consultar" />
             </div>
-            <div className='espaciadom'> 
+            <div class='espaciadom'> 
             </div>
             <div class="col-sm-12"> 
              <button type="button" class="btn btn-secondary buttoni">Imprimir</button>
             </div>
-            <div className='espaciado'> 
+            <div class='espaciado'> 
             </div>
           </div>
         </div>
@@ -107,13 +103,53 @@
         <h5 class="subtitulo">Filtros Secundarios</h5>
         <div class="d-flex">
           <div class="col-sm-4">
-            <!-- Contenido del componente DsctoFecha -->
+            <!-- Contenido estático de DsctoFecha -->
+            <div class="">
+              <div class="form-group">
+                <label class="form-check-label" for="dsctoVarios">
+                  <input class="form-check-input" type="checkbox" id="dsctoVarios" checked>
+                  Aplicar dscto. varios
+                </label>
+              </div>
+            
+              <!-- Fecha de Proyección -->
+              <label class='label'>Fecha de Proyeccion:</label>
+              <input class="form-control" type="date" id="fechaProyeccion">
+            </div>
           </div>
           <div class="col-sm-4">
             <!-- Contenido del componente Procedencia -->
+            <div class="">
+              <div class='d-flex'>
+                <label class="label col-sm-4">Procedencia:</label>
+                <div id="procedenciaDropdownContainer" class='custom-filter-dropdown'>
+                  <!-- Placeholder para el dropdown de procedencia generado dinámicamente en index.js -->
+                </div>
+              </div>
+              <div class='d-flex'>
+                <label class="label col-sm-4">Tipo:</label>
+                <div id="tipoDropdownContainer" class='custom-filter-dropdown'>
+                  <!-- Placeholder para el dropdown de tipo generado dinámicamente en index.js -->
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-sm-4">
-            <!-- Contenido del componente FilterSection -->
+             <!-- Contenido estático de FilterSection -->
+            <div class="">
+              <div class='d-flex'>
+                <label class="label col-sm-5">D. de la Materia:</label>
+                <div id="materiaDropdownContainer" class="custom-filter-dropdown">
+                  <!-- Placeholder para el dropdown de materia generado dinámicamente en index.js -->
+                </div>
+              </div>
+              <div class='d-flex'>
+                <label class="label col-sm-5">Situación Deuda:</label>
+                <div id="situacionDropdownContainer" class="custom-filter-dropdown">
+                  <!-- Placeholder para el dropdown de situacion generado dinámicamente en index.js -->
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="espaciadom">
@@ -122,14 +158,22 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <!-- Contenido del componente CtaCteSection -->
+          <!-- Contenido estático de CtaCteSection -->
+          <div class="form-control">
+            <h5 class="subtitulo">Resumen de Consulta</h5>
+            <span>
+              <div class='espaciado'></div>
+              <div class='espaciado'></div>
+              <div class='espaciado'></div>
+              <div class='espaciado'></div>
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </form>
 
   <script src="index.js"></script>
-
 </body>
 
 </html>
