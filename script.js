@@ -6,7 +6,7 @@ const anioOptions = ['Todos los Años', '1996', '1997', '1998', '1999', '2000', 
 // Lógica para generar el dropdown de años dinámicamente
 const anioDropdownContainer = document.getElementById('anioDropdownContainer');
 const dropdownHTML = `
-  <select id="anioDropdown" class="form-control">
+  <select id="anioDropdown" class="form-control" name="anioDropdown">
     ${anioOptions.map(option => `<option value="${option}">${option}</option>`).join('')}
   </select>
 `;
@@ -49,7 +49,7 @@ const tipoOptions = ['Detallado', 'Agrupado Trimestralmente'];
 // Lógica para generar el dropdown de procedencia dinámicamente
 const procedenciaDropdownContainer = document.getElementById('procedenciaDropdownContainer');
 const procedenciaDropdownHTML = `
-  <select id="procedenciaDropdown">
+  <select id="procedenciaDropdown" class="form-control">
     ${procedenciaOptions.map(option => `<option value="${option}">${option}</option>`).join('')}
   </select>
 `;
@@ -58,7 +58,7 @@ procedenciaDropdownContainer.innerHTML = procedenciaDropdownHTML;
 // Lógica para generar el dropdown de tipo dinámicamente
 const tipoDropdownContainer = document.getElementById('tipoDropdownContainer');
 const tipoDropdownHTML = `
-  <select id="tipoDropdown">
+  <select id="tipoDropdown" class="form-control">
     ${tipoOptions.map(option => `<option value="${option}" ${option === 'Agrupado Trimestralmente' ? 'selected' : ''}>${option}</option>`).join('')}
   </select>
 `;
@@ -80,7 +80,7 @@ const situacionOptions = ['Todas las Opciones', 'Pendiente', 'Pagado', 'Fraccion
 // Lógica para generar el dropdown de materia dinámicamente
 const materiaDropdownContainer = document.getElementById('materiaDropdownContainer');
 const materiaDropdownHTML = `
-  <select id="materiaDropdown">
+  <select id="materiaDropdown" class="form-control">
     ${materiaOptions.map(option => `<option value="${option}">${option}</option>`).join('')}
   </select>
 `;
@@ -89,10 +89,30 @@ materiaDropdownContainer.innerHTML = materiaDropdownHTML;
 // Lógica para generar el dropdown de situacion dinámicamente
 const situacionDropdownContainer = document.getElementById('situacionDropdownContainer');
 const situacionDropdownHTML = `
-  <select id="situacionDropdown">
+  <select id="situacionDropdown" class="form-control">
     ${situacionOptions.map(option => `<option value="${option}" ${option === 'Todas las Opciones' ? 'selected' : ''}>${option}</option>`).join('')}
   </select>
 `;
 situacionDropdownContainer.innerHTML = situacionDropdownHTML;
 
 // fin de filtros de materia y situacion
+
+//capturar datos del formulario
+
+document.getElementById("miFormulario").addEventListener("submit", function(event) {
+  // Evitar que el formulario se envíe de forma predeterminada
+  event.preventDefault();
+
+  // Capturar los datos del formulario
+  var nombre = document.getElementById("nombre").value;
+  var apellido = document.getElementById("apellido").value;
+  var codigo = document.getElementById("codigo").value;
+  var codPredio = document.getElementById("codPredio").value;
+  var anioDropdown = document.getElementById("anioDropdown").value;
+
+  // Hacer algo con los datos (por ejemplo, imprimirlos en la consola)
+  console.log("Nombre: " + nombre);
+  console.log("Apellido: " + apellido);
+  console.log("Código: " + codPredio);
+  console.log("Años: " + anioDropdown);
+});

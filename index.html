@@ -12,7 +12,12 @@
 </head>
 
 <body>
-  <form>
+  <form id="miFormulario">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" required>
     <div class="container">
       <div class="row d-flex">
         <div class="col-sm-1">
@@ -32,19 +37,19 @@
         <!-- Contenido del componente FiltrosPrincipales -->
         <div class="col-sm-4">
             <!-- Contenido estático de FiltrosPrincipales -->
-            <div class='form-control'> 
+            <div class='form-control form-control__card'> 
               <h5 class='subtitulo'>Filtros Principales</h5>
               
               <!-- Código Contribuyente -->
               <div class="d-flex">
-                <label for="codigo" class="label flex-1 col-sm-7">Código Contribuyente:</label>
-                <input id="codigo" class="form-control flex-1" type="text" placeholder="Ingrese Código" />
+                <label for="codigo" class="label col-sm-7">Código Contribuyente:</label>
+                <input class="form-control" id="codigo" name="codigo" type="text" placeholder="Ingrese Código" />
               </div>
           
               <!-- Código de Predio -->
               <div class="d-flex">
                 <label class="label col-sm-5">Codigo de Predio:</label>
-                <input type="number" placeholder="Ingrese código" class="form-control" />
+                <input class="form-control" type="text" id="codPredio" name="codPredio" placeholder="Ingrese código" />
               </div>
           
               <div class='d-flex'>
@@ -54,28 +59,29 @@
                 </div>
               </div>
               <div class='espaciadop'></div>
+              <div class='espaciadop'></div>
             </div>
         </div>
         
         <div class="col-sm-5">
           <!-- Contenido del componente Datos -->
-          <div class="form-control">
+          <div class="form-control form-control__card">
               <h5 class='subtitulo'>Datos</h5>
               <div class='espaciadom'></div>
               <!-- Primer grupo -->
               <div class="col-lg-12 d-flex">
                 <div>
-                  <label class="label col-lg-12" >Nombre :</label>
+                  <label class="label col-lg-12" >Nombre:</label>
                 </div>
-                <div id="nombre-container">
+                <div class="form-control form-control__data" id="nombre-container">
                   <!-- Placeholder para el contenido dinámico del nombre -->
                 </div>
               </div>
               <div class='espaciadom'></div>
               <!-- Segundo grupo -->
               <div class="col-sx-12 d-flex">
-                <label class="label">Direccion : </label>
-                <div id="direccion-container">
+                <label class="label">Direccion: </label>
+                <div class="form-control form-control__data" id="direccion-container">
                   <!-- Placeholder para el contenido dinámico de la dirección -->
                 </div>
               </div>
@@ -83,7 +89,7 @@
           </div>
         </div>
         <div class="col-sm-3">
-          <div class="form-control row">
+          <div class="form-control form-control__card row">
             <div class='espaciado'> 
             </div>
             <div class="col-sm-12"> 
@@ -99,25 +105,28 @@
           </div>
         </div>
       </div>
-      <div class="row principal form-control">
+      <div class="row principal form-control form-control__card">
         <h5 class="subtitulo">Filtros Secundarios</h5>
         <div class="d-flex">
-          <div class="col-sm-4">
+          <div class="col-sm-4 innercard">
             <!-- Contenido estático de DsctoFecha -->
             <div class="">
-              <div class="form-group">
+              <div class="form-group dsctofecha">
                 <label class="form-check-label" for="dsctoVarios">
                   <input class="form-check-input" type="checkbox" id="dsctoVarios" checked>
                   Aplicar dscto. varios
                 </label>
               </div>
-            
-              <!-- Fecha de Proyección -->
-              <label class='label'>Fecha de Proyeccion:</label>
-              <input class="form-control" type="date" id="fechaProyeccion">
+              <div class="d-flex">
+                 <!-- Fecha de Proyección -->
+                <label class='label col-sm-6'>Fecha de Proyeccion:</label>
+                <input class="form-control" type="date" id="fechaProyeccion">
+
+              </div>
+             
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 innercard">
             <!-- Contenido del componente Procedencia -->
             <div class="">
               <div class='d-flex'>
@@ -159,7 +168,7 @@
       <div class="row">
         <div class="col-sm-12">
           <!-- Contenido estático de CtaCteSection -->
-          <div class="form-control">
+          <div class="form-control form-control__card">
             <h5 class="subtitulo">Resumen de Consulta</h5>
             <span>
               <div class='espaciado'></div>
@@ -173,7 +182,7 @@
     </div>
   </form>
 
-  <script src="index.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
