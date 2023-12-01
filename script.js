@@ -49,7 +49,7 @@ const tipoOptions = ['Detallado', 'Agrupado Trimestralmente'];
 // Lógica para generar el dropdown de procedencia dinámicamente
 const procedenciaDropdownContainer = document.getElementById('procedenciaDropdownContainer');
 const procedenciaDropdownHTML = `
-  <select id="procedenciaDropdown" class="form-control">
+  <select id="procedenciaDropdown" name="procedenciaDropdown" class="form-control">
     ${procedenciaOptions.map(option => `<option value="${option}">${option}</option>`).join('')}
   </select>
 `;
@@ -58,7 +58,7 @@ procedenciaDropdownContainer.innerHTML = procedenciaDropdownHTML;
 // Lógica para generar el dropdown de tipo dinámicamente
 const tipoDropdownContainer = document.getElementById('tipoDropdownContainer');
 const tipoDropdownHTML = `
-  <select id="tipoDropdown" class="form-control">
+  <select id="tipoDropdown" name="tipoDropdown" class="form-control">
     ${tipoOptions.map(option => `<option value="${option}" ${option === 'Agrupado Trimestralmente' ? 'selected' : ''}>${option}</option>`).join('')}
   </select>
 `;
@@ -80,7 +80,7 @@ const situacionOptions = ['Todas las Opciones', 'Pendiente', 'Pagado', 'Fraccion
 // Lógica para generar el dropdown de materia dinámicamente
 const materiaDropdownContainer = document.getElementById('materiaDropdownContainer');
 const materiaDropdownHTML = `
-  <select id="materiaDropdown" class="form-control">
+  <select id="materiaDropdown" name="materiaDropdown" class="form-control">
     ${materiaOptions.map(option => `<option value="${option}">${option}</option>`).join('')}
   </select>
 `;
@@ -89,7 +89,7 @@ materiaDropdownContainer.innerHTML = materiaDropdownHTML;
 // Lógica para generar el dropdown de situacion dinámicamente
 const situacionDropdownContainer = document.getElementById('situacionDropdownContainer');
 const situacionDropdownHTML = `
-  <select id="situacionDropdown" class="form-control">
+  <select id="situacionDropdown" name="situacionDropdown" class="form-control">
     ${situacionOptions.map(option => `<option value="${option}" ${option === 'Todas las Opciones' ? 'selected' : ''}>${option}</option>`).join('')}
   </select>
 `;
@@ -99,20 +99,17 @@ situacionDropdownContainer.innerHTML = situacionDropdownHTML;
 
 //capturar datos del formulario
 
-document.getElementById("miFormulario").addEventListener("submit", function(event) {
+document.getElementById("miFormulario").addEventListener("submit", async function(event) {
   // Evitar que el formulario se envíe de forma predeterminada
   event.preventDefault();
 
-  // Capturar los datos del formulario
-  var nombre = document.getElementById("nombre").value;
-  var apellido = document.getElementById("apellido").value;
-  var codigo = document.getElementById("codigo").value;
-  var codPredio = document.getElementById("codPredio").value;
-  var anioDropdown = document.getElementById("anioDropdown").value;
+  // Obtener el parámetro "codigo" de la URL
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const codigoParam = urlSearchParams.get("codigo");
+  
+  // Poblar la etiqueta input del formulario con el valor de "codigo"
+  const codigoInput = document.getElementById("codigo");
+  codigoInput.value = codigoParam;
 
-  // Hacer algo con los datos (por ejemplo, imprimirlos en la consola)
-  console.log("Nombre: " + nombre);
-  console.log("Apellido: " + apellido);
-  console.log("Código: " + codPredio);
-  console.log("Años: " + anioDropdown);
+  
 });
