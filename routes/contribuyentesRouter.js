@@ -1,7 +1,10 @@
 const express = require('express');
-const { faker } = require('@faker-js/faker');
+
+const ContribuyentesService = require('./../services/contribuyenteService')
 
 const router = express.Router();
+
+const service = new ContribuyentesService();
 
 /*router.get('/', (req, res) => {
 
@@ -36,18 +39,8 @@ const router = express.Router();
 })*/
 
 router.get('/', (req, res) => {
-  const contribuyentes = [];
-  const { size } = req.query;
-  const limit = size || 10;
-  for (let index = 0; index < limit; index++) {
-    contribuyentes.push({
-      nombre: faker.commerce.productName(),
-      codigocontribuyente: parseInt(faker.commerce.price(), 10),
-      image: faker.image.imageUrl(),
+  const contribuyentes = service.find();
 
-    });
-
-  }
   res.json(contribuyentes);
 })
 
@@ -57,28 +50,44 @@ router.get('/filter', (req, res) =>{
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  res.json ({
-      id,
-      codigocontribuyente: '02',
-      codigopredio: 443,
-      anioi: 1996,
-      aniof: 2023,
-      fechaproy: 2023,
-      aplica_des: true,
-      procedencia: "Todas-las-procedencias",
-      tipo:  "Agrupado-Trimestralmente",
-      des_materia: "Impuesto-Predial",
-      situacion_deuda: "Todas-las-Opciones"
+  if (id === '999') {
+    res.status(404).json ({
+      message: 'not found'
   });
+  } else {
+      res.status(200).json ({
+        id,
+        codigocontribuyente: '02',
+        codigopredio: 443,
+        anioi: 1996,
+        aniof: 2023,
+        fechaproy: 2023,
+        aplica_des: true,
+        procedencia: "Todas-las-procedencias",
+        tipo:  "Agrupado-Trimestralmente",
+        des_materia: "Impuesto-Predial",
+        situacion_deuda: "Todas-las-Opciones"
+    });
+  }
 })
 
 router.post('/', (req, res) => {
   const body = req.body;
-  res.json({
+  res.status(201).json({
     message: 'created',
     data: body
   });
 })
+
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  res.json({
+    message: 'update',
+    data: body,
+    id,
+  });
+});
 
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
