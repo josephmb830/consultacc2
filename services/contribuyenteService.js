@@ -29,8 +29,8 @@ class ContribuyentesService {
         return this.contribuyentes;
     }
 
-    findOne() {
-
+    findOne(id) {
+        return this.contribuyentes.find(item => item.id === id);
     }
 
     update() {

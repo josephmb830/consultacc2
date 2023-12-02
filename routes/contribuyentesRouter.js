@@ -50,25 +50,8 @@ router.get('/filter', (req, res) =>{
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  if (id === '999') {
-    res.status(404).json ({
-      message: 'not found'
-  });
-  } else {
-      res.status(200).json ({
-        id,
-        codigocontribuyente: '02',
-        codigopredio: 443,
-        anioi: 1996,
-        aniof: 2023,
-        fechaproy: 2023,
-        aplica_des: true,
-        procedencia: "Todas-las-procedencias",
-        tipo:  "Agrupado-Trimestralmente",
-        des_materia: "Impuesto-Predial",
-        situacion_deuda: "Todas-las-Opciones"
-    });
-  }
+  const contribuyente = service.findOne(id);
+  res.json(contribuyente);
 })
 
 router.post('/', (req, res) => {
