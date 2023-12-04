@@ -21,8 +21,13 @@ class ContribuyentesService {
         }   
     }
 
-    create() {
-
+    create(data) {
+        const newContribuyente = {
+            id: faker.string.uuid(),
+            ...data
+        }
+        this.contribuyentes.push(newContribuyente);
+        return newContribuyente
     }
 
     find() {
@@ -33,12 +38,26 @@ class ContribuyentesService {
         return this.contribuyentes.find(item => item.id === id);
     }
 
-    update() {
-
+    update(id, changes) {
+        const index = this.contribuyentes.findIndex(item => item.id === id);
+        if (index === -1) {
+            throw new Error ('contribuyente not found');
+        }
+        const contribuyente = this.contribuyentes[index];
+        this.contribuyentes[index] = {
+            ...contribuyente,
+            ...changes
+        };
+        return this.contribuyentes[index];
     }
 
-    delete() {
-
+    delete(id) {
+        const index = this.contribuyentes.findIndex(item => item.id === id);
+        if (index === -1) {
+            throw new Error ('product not found');
+        }
+        this.contribuyentes.splice(index, 1);
+        return { id };
     }
 }
 

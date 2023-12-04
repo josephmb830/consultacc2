@@ -56,10 +56,8 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const body = req.body;
-  res.status(201).json({
-    message: 'created',
-    data: body
-  });
+  const newContribuyente = service.create(body);
+  res.status(201).json(newContribuyente);
 })
 
 router.put('/:id', (req, res) => {
@@ -75,19 +73,14 @@ router.put('/:id', (req, res) => {
 router.patch('/:id', (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  res.json({
-    message: 'update',
-    data: body,
-    id,
-  });
+  const contribuyente = service.update(id, body);
+  res.json(contribuyente);
 });
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
-    message: 'deleted',
-    id,
-  });
+  const rta = service.delete(id);
+  res.json(rta);
 });
 
 
