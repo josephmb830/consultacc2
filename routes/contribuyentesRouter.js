@@ -38,8 +38,8 @@ const service = new ContribuyentesService();
   ]);
 })*/
 
-router.get('/', (req, res) => {
-  const contribuyentes = service.find();
+router.get('/', async (req, res) => {
+  const contribuyentes = await service.find();
 
   res.json(contribuyentes);
 })
@@ -48,19 +48,19 @@ router.get('/filter', (req, res) =>{
   res.send('Yo soy un filter');
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const contribuyente = service.findOne(id);
+  const contribuyente = await service.findOne(id);
   res.json(contribuyente);
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const body = req.body;
-  const newContribuyente = service.create(body);
+  const newContribuyente = await service.create(body);
   res.status(201).json(newContribuyente);
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const body = req.body;
   res.json({
@@ -70,16 +70,26 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const contribuyente = await service.update(id, body);
+    res.json(contribuyente);
+  } catch (error) {
+    res.status(404).json({
+      message: error.message
+    });
+  }
   const { id } = req.params;
   const body = req.body;
-  const contribuyente = service.update(id, body);
+  const contribuyente = await service.update(id, body);
   res.json(contribuyente);
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async(req, res) => {
   const { id } = req.params;
-  const rta = service.delete(id);
+  const rta = await service.delete(id);
   res.json(rta);
 });
 

@@ -21,7 +21,7 @@ class ContribuyentesService {
         }   
     }
 
-    create(data) {
+    async create(data) {
         const newContribuyente = {
             id: faker.string.uuid(),
             ...data
@@ -31,14 +31,18 @@ class ContribuyentesService {
     }
 
     find() {
-        return this.contribuyentes;
+        return new Promise ((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this.contribuyentes);
+            }, 5000);
+        })
     }
 
-    findOne(id) {
+    async findOne(id) {
         return this.contribuyentes.find(item => item.id === id);
     }
 
-    update(id, changes) {
+    async update(id, changes) {
         const index = this.contribuyentes.findIndex(item => item.id === id);
         if (index === -1) {
             throw new Error ('contribuyente not found');
@@ -51,7 +55,7 @@ class ContribuyentesService {
         return this.contribuyentes[index];
     }
 
-    delete(id) {
+    async delete(id) {
         const index = this.contribuyentes.findIndex(item => item.id === id);
         if (index === -1) {
             throw new Error ('product not found');
