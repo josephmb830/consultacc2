@@ -213,3 +213,8 @@ postgres_data
 #codes:
 #docker-compose up -d postgres
 #docker-compose ps
+#docker-compose exec postgres bash
+#psql -h localhost -d my_consultacc -U joseph
+#\d+
+#\q
+#exit

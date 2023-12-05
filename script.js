@@ -129,7 +129,8 @@ document.getElementById("miFormulario").addEventListener("submit", async functio
 
   // Construir la URL de consulta
   //var apiUrl = `http://localhost:3000/api/consulta?codigo=${codigo}&nombre=${nombre}&apellido=${apellido}&dsctoVarios=${dsctoVarios}`;
-  var apiUrl = `http://localhost:3005/api/v1/contribuyentes/${codigo}`
+  //var apiUrl = `http://localhost:3005/api/v1/contribuyentes/${codigo}`
+  var apiUrl = `https://jsonplaceholder.typicode.com/todos/${codigo}`
 
   
   try {
@@ -145,9 +146,9 @@ document.getElementById("miFormulario").addEventListener("submit", async functio
     var template = `
       <ul>
         <li><strong>Código:</strong> ${data.id}</li>
-        <li><strong>Código de Predio:</strong> ${data.codigocontribuyente}</li>
-        <li><strong>Nombre:</strong> ${data.nombre}</li>
-        <li><strong>Procedencia:</strong> ${data.image}</li>
+        <li><strong>Código de Predio:</strong> ${data.userId}</li>
+        <li><strong>Nombre:</strong> ${data.title}</li>
+        <li><strong>Completado:</strong> ${data.completed}</li>
         
         <!-- Agregar más campos según sea necesario -->
       </ul>
