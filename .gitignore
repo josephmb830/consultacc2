@@ -206,4 +206,10 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+postgres_data
+
 # End of https://www.toptal.com/developers/gitignore/api/node,images
+
+#codes:
+#docker-compose up -d postgres
+#docker-compose ps
