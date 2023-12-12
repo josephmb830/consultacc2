@@ -99,11 +99,10 @@ situacionDropdownContainer.innerHTML = situacionDropdownHTML;
 
 
 //capturar datos del formulario
-//http://localhost:5500/index.html?codigo=4
+//http://localhost:5500/index.html?codigo=7
 
-document.getElementById("miFormulario").addEventListener("submit", async function(event) {
-  // Evitar que el formulario se envíe de forma predeterminada
-  event.preventDefault();
+
+document.addEventListener("DOMContentLoaded", async function () {
 
   // Obtener el parámetro "codigo" de la URL
   const urlSearchParams = new URLSearchParams(window.location.search);
@@ -119,9 +118,9 @@ document.getElementById("miFormulario").addEventListener("submit", async functio
   // Llamada a la API después de esperar
   try {
     // Obtener datos de la API
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos"+ codigoNumero);
     const data = await response.json();
-
+    console.log(response)
     // Convertir codigoParam a un número
     const codigoNumero = parseInt(codigoParam, 10);
 
