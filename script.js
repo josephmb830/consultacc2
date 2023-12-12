@@ -99,42 +99,44 @@ situacionDropdownContainer.innerHTML = situacionDropdownHTML;
 
 
 //capturar datos del formulario
-//http://localhost:5500/index.html?codigo=7
+//http://localhost:5500/index.html?codigo=4
 
 
 document.addEventListener("DOMContentLoaded", async function () {
-
   // Obtener el parámetro "codigo" de la URL
   const urlSearchParams = new URLSearchParams(window.location.search);
   const codigoParam = urlSearchParams.get("codigo");
-  
+
   // Poblar la etiqueta input del formulario con el valor de "codigo"
   const codigoInput = document.getElementById("codigo");
-  codigoInput.value = codigoParam;  
+  codigoInput.value = codigoParam;
 
   // Esperar 2 segundos antes de llamar a la API (simulando un middleware)
   await wait(2000);
 
   // Llamada a la API después de esperar
   try {
-    // Obtener datos de la API
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos"+ codigoNumero);
-    const data = await response.json();
-    console.log(response)
     // Convertir codigoParam a un número
     const codigoNumero = parseInt(codigoParam, 10);
 
-    // Verificar si el número es válido y está dentro del rango de datos
-    if (!isNaN(codigoNumero) && codigoNumero >= 0 && codigoNumero < data.length) {
+    // Verificar si el número es válido
+    if (!isNaN(codigoNumero)) {
+      // Construir la URL de consulta directa al elemento específico
+      const apiUrl = `https://jsonplaceholder.typicode.com/todos/${codigoNumero}`;
+
+      // Obtener datos de la API
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
       // Mostrar los datos en la sección de nombre y dirección
       const nombreContainer = document.getElementById("nombre-container");
       const direccionContainer = document.getElementById("direccion-container");
 
       // Mostrar el elemento correspondiente a codigoNumero en los datos de la API
-      nombreContainer.innerHTML = `<span>${data[codigoNumero].title}</span>`;
-      direccionContainer.innerHTML = `<span>${data[codigoNumero].completed ? 'Completado' : 'No completado'}</span>`;
+      nombreContainer.innerHTML = `<span>${data.title}</span>`;
+      direccionContainer.innerHTML = `<span>${data.completed ? 'Completado' : 'No completado'}</span>`;
     } else {
-      console.error("Número de código no válido o fuera de rango");
+      console.error("Número de código no válido");
     }
   } catch (error) {
     console.error("Error al llamar a la API:", error);
