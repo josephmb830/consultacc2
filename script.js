@@ -135,12 +135,32 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Mostrar el elemento correspondiente a codigoNumero en los datos de la API
       nombreContainer.innerHTML = `<span>${data.title}</span>`;
       direccionContainer.innerHTML = `<span>${data.completed ? 'Completado' : 'No completado'}</span>`;
+    
+    
+      // Luego de mostrar los datos en la página, genera un documento PDF
+      const generarPDFBtn = document.getElementById("generarPDFBtn");
+      generarPDFBtn.addEventListener("click", function () {
+      // Crear una instancia de jsPDF
+      const pdf = new jsPDF();
+
+      // Agregar contenido al PDF
+      pdf.text(20, 20, 'Datos de la Consulta');
+      pdf.text(20, 30, `Código: ${codigoParam}`);
+      pdf.text(20, 40, `Título: ${data.title}`);
+      pdf.text(20, 50, `Completado: ${data.completed ? 'Sí' : 'No'}`);
+
+      // Guardar o mostrar el PDF (puedes ajustar esto según tus necesidades)
+      pdf.save('consulta.pdf');
+    });
+    
+    
     } else {
       console.error("Número de código no válido");
     }
   } catch (error) {
     console.error("Error al llamar a la API:", error);
   }
+  
 });
 
 // Función para esperar una cantidad de milisegundos
